@@ -1,0 +1,6 @@
+# Linting tool for code quality checks
+pylint
+
+# Additional dependencies
+pandas
+numpy
