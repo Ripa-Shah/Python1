@@ -9,7 +9,7 @@
 						"referenceName": "SourceDataset_7x0",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "Blizzardsalarydataset"
 				}
 			],
 			"sinks": [],
@@ -36,8 +36,8 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 sort(asc(ERROR_FUNCTION(''), true)) ~> sort1",
+				"     ignoreNoFilesFound: false) ~> Blizzardsalarydataset",
+				"Blizzardsalarydataset sort(asc(ERROR_FUNCTION(''), true)) ~> sort1",
 				"sort1 cast(output(",
 				"          timestamp as date 'MM-dd-yyyy'",
 				"     ),",
