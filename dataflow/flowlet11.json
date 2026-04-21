@@ -22,6 +22,9 @@
 					"name": "combinesalary"
 				},
 				{
+					"name": "derivedColumn1"
+				},
+				{
 					"name": "Blizzardsalarydataset"
 				},
 				{
@@ -64,7 +67,8 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"YearlySalary, HourlySalary union(byName: true)~> combinesalary",
-				"combinesalary output() ~> output1"
+				"combinesalary derive(percent_incr = iif(percent_incr>0, to_double(percent_incr))) ~> derivedColumn1",
+				"derivedColumn1 output() ~> output1"
 			]
 		}
 	}
