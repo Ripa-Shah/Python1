@@ -1,0 +1,48 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SourceDataset_7x0",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "sort1"
+				},
+				{
+					"name": "timestamptodate"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          id as string,",
+				"          timestamp as string,",
+				"          status as string,",
+				"          current_title as string,",
+				"          current_salary as string,",
+				"          salary_type as string,",
+				"          percent_incr as string,",
+				"          other_info as string,",
+				"          location as string,",
+				"          performance_rating as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sort(asc(ERROR_FUNCTION(''), true)) ~> sort1",
+				"sort1 cast(output(",
+				"          timestamp as date 'MM-dd-yyyy'",
+				"     ),",
+				"     errors: true) ~> timestamptodate"
+			]
+		}
+	}
+}
