@@ -22,9 +22,6 @@
 					"name": "combinesalary"
 				},
 				{
-					"name": "removenulls"
-				},
-				{
 					"name": "Blizzardsalarydataset"
 				}
 			],
@@ -63,9 +60,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"YearlySalary, HourlySalary union(byName: true)~> combinesalary",
-				"combinesalary derive(timestamp = toDate(timestamp,'mm/dd/yyyy'),",
-				"          percent_incr = iif(isNull(percent_incr) || percent_incr == 'NA', 0.0, toDouble(percent_incr))) ~> removenulls"
+				"YearlySalary, HourlySalary union(byName: true)~> combinesalary"
 			]
 		}
 	}
