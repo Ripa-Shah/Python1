@@ -1,0 +1,31 @@
+{
+	"name": "flowlet11",
+	"properties": {
+		"type": "Flowlet",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Blizzardsalarydataset"
+				}
+			],
+			"scriptLines": [
+				"input(output(",
+				"          id as string,",
+				"          timestamp as string,",
+				"          status as string,",
+				"          current_title as string,",
+				"          current_salary as string,",
+				"          salary_type as string,",
+				"          percent_incr as string,",
+				"          other_info as string,",
+				"          location as string,",
+				"          performance_rating as string",
+				"     ),",
+				"     order: 0,",
+				"     allowSchemaDrift: true) ~> Blizzardsalarydataset"
+			]
+		}
+	}
+}
