@@ -50,7 +50,7 @@
 				"     order: 0,",
 				"     allowSchemaDrift: true) ~> Blizzardsalarydataset",
 				"Blizzardsalarydataset split(lower(trim(salary_type)) == 'year',",
-				"     ERROR_FUNCTION(''),",
+				"     lower(trim(salary_type)) == 'hour',",
 				"     disjoint: false) ~> SalaryTypeSplit@(yearStream, hourStream)",
 				"SalaryTypeSplit@hourStream derive() ~> HourlySalary",
 				"SalaryTypeSplit@yearStream derive(salary_type_hour = salary_type == 'hour',",
