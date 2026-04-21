@@ -25,6 +25,9 @@
 					"name": "BlizzardSalaryJSON"
 				},
 				{
+					"name": "sort1"
+				},
+				{
 					"name": "Blizzardsalarydataset"
 				},
 				{
@@ -51,10 +54,11 @@
 				"     disjoint: false) ~> SalaryTypeSplit@(yearStream, hourStream)",
 				"SalaryTypeSplit@hourStream derive(salary_type_hour = salary_type == 'hour') ~> HourlySalary",
 				"SalaryTypeSplit@yearStream derive(salary_type_year = salary_type == 'year') ~> YearlySalary",
-				"YearlySalary, HourlySalary union(byName: true)~> combinesalary",
+				"sort1, HourlySalary union(byName: true)~> combinesalary",
 				"combinesalary derive(percent_incr = iif(toDouble(percent_incr) > 0, toDouble(percent_incr), toDouble(0.0))) ~> derivedColumn1",
 				"derivedColumn1 parse(format: 'json',",
 				"     documentForm: 'documentPerLine') ~> BlizzardSalaryJSON",
+				"YearlySalary sort(asc(salary_type, true)) ~> sort1",
 				"BlizzardSalaryJSON output() ~> output1"
 			]
 		}
