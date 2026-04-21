@@ -1,0 +1,15 @@
+{
+	"name": "DestinationDataset_7x0",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CosmosDbNoSql2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {},
+		"typeProperties": {
+			"collectionName": "Blizzard_Salary"
+		}
+	}
+}
