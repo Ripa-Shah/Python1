@@ -16,9 +16,6 @@
 					"name": "YearlySalary"
 				},
 				{
-					"name": "select1"
-				},
-				{
 					"name": "combinesalary"
 				},
 				{
@@ -52,23 +49,8 @@
 				"Blizzardsalarydataset split(lower(trim(salary_type)) == 'year',",
 				"     lower(trim(salary_type)) == 'hour',",
 				"     disjoint: false) ~> SalaryTypeSplit@(yearStream, hourStream)",
-				"SalaryTypeSplit@hourStream derive() ~> HourlySalary",
-				"SalaryTypeSplit@yearStream derive(salary_type_hour = salary_type == 'hour',",
-				"          salary_type_year = salary_type == 'year') ~> YearlySalary",
-				"HourlySalary select(mapColumn(",
-				"          id,",
-				"          timestamp,",
-				"          status,",
-				"          current_title,",
-				"          current_salary,",
-				"          salary_type,",
-				"          percent_incr,",
-				"          other_info = salary_type,",
-				"          location,",
-				"          performance_rating",
-				"     ),",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
+				"SalaryTypeSplit@hourStream derive(salary_type_hour = salary_type == 'hour') ~> HourlySalary",
+				"SalaryTypeSplit@yearStream derive(salary_type_year = salary_type == 'year') ~> YearlySalary",
 				"YearlySalary, HourlySalary union(byName: true)~> combinesalary",
 				"combinesalary derive(percent_incr = iif(toDouble(percent_incr) > 0, toDouble(percent_incr), toDouble(0.0))) ~> derivedColumn1",
 				"derivedColumn1 parse(format: 'json',",
