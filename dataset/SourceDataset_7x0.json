@@ -14,10 +14,51 @@
 				"container": "blobcontainer"
 			},
 			"columnDelimiter": ",",
-			"escapeChar": "\\",
+			"escapeChar": "\"",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "id",
+				"type": "String"
+			},
+			{
+				"name": "timestamp",
+				"type": "String"
+			},
+			{
+				"name": "status",
+				"type": "String"
+			},
+			{
+				"name": "current_title",
+				"type": "String"
+			},
+			{
+				"name": "current_salary",
+				"type": "String"
+			},
+			{
+				"name": "salary_type",
+				"type": "String"
+			},
+			{
+				"name": "percent_incr",
+				"type": "String"
+			},
+			{
+				"name": "other_info",
+				"type": "String"
+			},
+			{
+				"name": "location",
+				"type": "String"
+			},
+			{
+				"name": "performance_rating",
+				"type": "String"
+			}
+		]
 	}
 }
