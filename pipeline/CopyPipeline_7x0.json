@@ -57,7 +57,7 @@
 				]
 			},
 			{
-				"name": "Data flow1",
+				"name": "Blizzardsalary_dataflow",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
