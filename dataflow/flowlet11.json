@@ -7,6 +7,9 @@
 			"sinks": [],
 			"transformations": [
 				{
+					"name": "SalaryTypeSplit"
+				},
+				{
 					"name": "Blizzardsalarydataset"
 				}
 			],
@@ -24,7 +27,10 @@
 				"          performance_rating as string",
 				"     ),",
 				"     order: 0,",
-				"     allowSchemaDrift: true) ~> Blizzardsalarydataset"
+				"     allowSchemaDrift: true) ~> Blizzardsalarydataset",
+				"Blizzardsalarydataset split(salary_type == 'year',",
+				"     ERROR_FUNCTION(''),",
+				"     disjoint: false) ~> SalaryTypeSplit@(salary_type, salary_type)"
 			]
 		}
 	}
