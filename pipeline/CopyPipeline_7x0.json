@@ -73,12 +73,6 @@
 						"referenceName": "Blizardsalary_dataflow",
 						"type": "DataFlowReference"
 					},
-					"staging": {
-						"linkedService": {
-							"referenceName": "AzureBlobStorage2",
-							"type": "LinkedServiceReference"
-						}
-					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
