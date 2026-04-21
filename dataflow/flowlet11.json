@@ -28,9 +28,9 @@
 				"     ),",
 				"     order: 0,",
 				"     allowSchemaDrift: true) ~> Blizzardsalarydataset",
-				"Blizzardsalarydataset split(salary_type == 'year',",
+				"Blizzardsalarydataset split(lower(trim(salary_type)) == 'year',",
 				"     ERROR_FUNCTION(''),",
-				"     disjoint: false) ~> SalaryTypeSplit@(salary_type, salary_type)"
+				"     disjoint: false) ~> SalaryTypeSplit@(yearStream, hourStream)"
 			]
 		}
 	}
