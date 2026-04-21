@@ -70,7 +70,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "dataflow1",
+						"referenceName": "Blizardsalary_dataflow",
 						"type": "DataFlowReference"
 					},
 					"compute": {
