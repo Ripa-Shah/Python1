@@ -1,5 +1,5 @@
 {
-	"name": "flowlet11",
+	"name": "Blizzard_salary_flowlet",
 	"properties": {
 		"type": "Flowlet",
 		"typeProperties": {
@@ -23,6 +23,9 @@
 				},
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "parse1"
 				},
 				{
 					"name": "Blizzardsalarydataset"
@@ -68,7 +71,9 @@
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"YearlySalary, HourlySalary union(byName: true)~> combinesalary",
 				"combinesalary derive(percent_incr = iif(toDouble(percent_incr) > 0, toDouble(percent_incr), toDouble(0.0))) ~> derivedColumn1",
-				"derivedColumn1 output() ~> output1"
+				"derivedColumn1 parse(format: 'json',",
+				"     documentForm: 'documentPerLine') ~> parse1",
+				"parse1 output() ~> output1"
 			]
 		}
 	}
