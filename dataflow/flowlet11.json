@@ -10,10 +10,10 @@
 					"name": "SalaryTypeSplit"
 				},
 				{
-					"name": "YearlySalary"
+					"name": "HourlySalary"
 				},
 				{
-					"name": "derivedColumn1"
+					"name": "YearlySalary"
 				},
 				{
 					"name": "combinesalary"
@@ -43,10 +43,10 @@
 				"Blizzardsalarydataset split(lower(trim(salary_type)) == 'year',",
 				"     ERROR_FUNCTION(''),",
 				"     disjoint: false) ~> SalaryTypeSplit@(yearStream, hourStream)",
-				"SalaryTypeSplit@hourStream derive(other_info = ERROR_FUNCTION('')) ~> YearlySalary",
+				"SalaryTypeSplit@hourStream derive(other_info = ERROR_FUNCTION('')) ~> HourlySalary",
 				"SalaryTypeSplit@yearStream derive(salary_type_hour = salary_type == 'hour',",
-				"          salary_type_year = salary_type == 'year') ~> derivedColumn1",
-				"SalaryTypeSplit@hourStream, YearlySalary union(byName: true)~> combinesalary",
+				"          salary_type_year = salary_type == 'year') ~> YearlySalary",
+				"HourlySalary, YearlySalary union(byName: true)~> combinesalary",
 				"combinesalary select(mapColumn(",
 				"          id,",
 				"          timestamp,",
