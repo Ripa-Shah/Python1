@@ -12,7 +12,15 @@
 					"name": "Blizzardsalarydataset"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DestinationDataset_7x0",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "sort1"
@@ -41,7 +49,16 @@
 				"sort1 cast(output(",
 				"          timestamp as date 'MM-dd-yyyy'",
 				"     ),",
-				"     errors: true) ~> timestamptodate"
+				"     errors: true) ~> timestamptodate",
+				"Blizzardsalarydataset sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'document',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
