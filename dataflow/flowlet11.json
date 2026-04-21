@@ -10,6 +10,12 @@
 					"name": "SalaryTypeSplit"
 				},
 				{
+					"name": "YearlySalary"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
 					"name": "Blizzardsalarydataset"
 				}
 			],
@@ -30,7 +36,10 @@
 				"     allowSchemaDrift: true) ~> Blizzardsalarydataset",
 				"Blizzardsalarydataset split(lower(trim(salary_type)) == 'year',",
 				"     ERROR_FUNCTION(''),",
-				"     disjoint: false) ~> SalaryTypeSplit@(yearStream, hourStream)"
+				"     disjoint: false) ~> SalaryTypeSplit@(yearStream, hourStream)",
+				"SalaryTypeSplit@hourStream derive(other_info = ERROR_FUNCTION('')) ~> YearlySalary",
+				"SalaryTypeSplit@yearStream derive(salary_type_hour = salary_type == 'hour',",
+				"          salary_type_year = salary_type == 'year') ~> derivedColumn1"
 			]
 		}
 	}
