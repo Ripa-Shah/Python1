@@ -46,7 +46,7 @@
 				"SalaryTypeSplit@hourStream derive(other_info = ERROR_FUNCTION('')) ~> HourlySalary",
 				"SalaryTypeSplit@yearStream derive(salary_type_hour = salary_type == 'hour',",
 				"          salary_type_year = salary_type == 'year') ~> YearlySalary",
-				"HourlySalary, YearlySalary union(byName: true)~> combinesalary",
+				"HourlySalary, YearlySalary, Blizzardsalarydataset union(byName: true)~> combinesalary",
 				"combinesalary select(mapColumn(",
 				"          id,",
 				"          timestamp,",
