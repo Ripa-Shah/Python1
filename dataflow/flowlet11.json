@@ -23,6 +23,9 @@
 				},
 				{
 					"name": "Blizzardsalarydataset"
+				},
+				{
+					"name": "output1"
 				}
 			],
 			"scriptLines": [
@@ -60,7 +63,8 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"YearlySalary, HourlySalary union(byName: true)~> combinesalary"
+				"YearlySalary, HourlySalary union(byName: true)~> combinesalary",
+				"combinesalary output() ~> output1"
 			]
 		}
 	}
