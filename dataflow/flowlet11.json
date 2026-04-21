@@ -16,6 +16,9 @@
 					"name": "derivedColumn1"
 				},
 				{
+					"name": "combinesalary"
+				},
+				{
 					"name": "Blizzardsalarydataset"
 				}
 			],
@@ -39,7 +42,8 @@
 				"     disjoint: false) ~> SalaryTypeSplit@(yearStream, hourStream)",
 				"SalaryTypeSplit@hourStream derive(other_info = ERROR_FUNCTION('')) ~> YearlySalary",
 				"SalaryTypeSplit@yearStream derive(salary_type_hour = salary_type == 'hour',",
-				"          salary_type_year = salary_type == 'year') ~> derivedColumn1"
+				"          salary_type_year = salary_type == 'year') ~> derivedColumn1",
+				"SalaryTypeSplit@hourStream, YearlySalary union(byName: true)~> combinesalary"
 			]
 		}
 	}
