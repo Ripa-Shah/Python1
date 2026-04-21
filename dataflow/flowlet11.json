@@ -67,7 +67,7 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"YearlySalary, HourlySalary union(byName: true)~> combinesalary",
-				"combinesalary derive(percent_incr = iif(toDouble(percent_incr) > 0, toDouble(percent_incr), 0.0)) ~> derivedColumn1",
+				"combinesalary derive(percent_incr = iif(toDouble(percent_incr) > 0, toDouble(percent_incr), toDouble(0.0))) ~> derivedColumn1",
 				"derivedColumn1 output() ~> output1"
 			]
 		}
