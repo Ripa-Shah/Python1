@@ -16,13 +16,10 @@
 					"name": "YearlySalary"
 				},
 				{
-					"name": "combinesalary"
-				},
-				{
 					"name": "select1"
 				},
 				{
-					"name": "filter1"
+					"name": "combinesalary"
 				},
 				{
 					"name": "Blizzardsalarydataset"
@@ -49,8 +46,7 @@
 				"SalaryTypeSplit@hourStream derive() ~> HourlySalary",
 				"SalaryTypeSplit@yearStream derive(salary_type_hour = salary_type == 'hour',",
 				"          salary_type_year = salary_type == 'year') ~> YearlySalary",
-				"HourlySalary, YearlySalary, Blizzardsalarydataset union(byName: true)~> combinesalary",
-				"filter1 select(mapColumn(",
+				"HourlySalary select(mapColumn(",
 				"          id,",
 				"          timestamp,",
 				"          status,",
@@ -64,7 +60,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"combinesalary filter(toDouble(percent_incr) > 0) ~> filter1"
+				"YearlySalary, HourlySalary union(byName: true)~> combinesalary"
 			]
 		}
 	}
